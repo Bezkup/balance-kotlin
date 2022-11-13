@@ -1,9 +1,8 @@
 package com.bezkup.balance.repositories
 
 import com.bezkup.balance.entity.Transaction
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 
-interface TransactionsRepository: CrudRepository<Transaction, Long> {
-    fun searchById(id: Long): Transaction?
-    fun getAllTransaction(): List<Transaction>?
-}
+@Repository
+interface TransactionsRepository: JpaRepository<Transaction, Long>

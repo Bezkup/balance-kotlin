@@ -1,10 +1,8 @@
 package com.bezkup.balance.repositories
 
 import com.bezkup.balance.entity.Category
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 
-interface CategoriesRepository : CrudRepository<Category,Long>{
-    fun searchById(id: Long): Category?
-    fun searchByCategoryName(name: String): Category?
-    fun getAllCategories(): List<Category>?
-}
+@Repository
+interface CategoriesRepository : JpaRepository<Category,Long>

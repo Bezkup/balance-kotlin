@@ -11,7 +11,7 @@ class Config {
         fun publicApi(): GroupedOpenApi {
             return GroupedOpenApi.builder()
                 .group("apis")
-                .pathsToMatch("/*")
+                .pathsToMatch("/**")
                 .build()
         }
     }

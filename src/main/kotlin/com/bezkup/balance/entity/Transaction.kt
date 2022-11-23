@@ -1,14 +1,11 @@
 package com.bezkup.balance.entity
 
 import org.jetbrains.annotations.NotNull
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
 class Transaction(
-    @Id @GeneratedValue var id: Long,
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) var id: Long,
     @NotNull var amount: Double,
-    @ManyToOne var category: Category,
+    @ManyToOne(cascade= [CascadeType.ALL]) var category: Category,
 )

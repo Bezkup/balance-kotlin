@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("api/v1/transaction")
+@RequestMapping("api/v1/transactions")
 class TransactionController @Autowired constructor(service: TransactionService) {
 
     val transactionService: TransactionService = service
@@ -17,9 +17,14 @@ class TransactionController @Autowired constructor(service: TransactionService) 
         return transactionService.getAllTransaction()
     }
 
+    @RequestMapping(value = ["/{id}"], method = [RequestMethod.GET])
+    fun getTransactionById(@PathVariable("id") id: Long): Transaction? {
+        return transactionService.searchById(id)
+    }
+
     @RequestMapping(method = [RequestMethod.PUT])
-    fun addTransaction(@RequestBody request: Transaction): JSONPObject{
+    fun addTransaction(@RequestBody request: Transaction): Map<String, String> {
         transactionService.save(request)
-        return JSONPObject("result","ok")
+        return mapOf("result" to "ok")
     }
 }
